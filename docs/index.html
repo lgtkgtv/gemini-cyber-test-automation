@@ -325,6 +325,44 @@
     footer a:hover {
       text-decoration: underline;
     }
+
+    .card-actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+
+    .card-actions .btn-launch {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .btn-colab {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 0.5rem 0.85rem;
+      transition: all 0.2s ease;
+      height: 44px;
+      text-decoration: none;
+    }
+
+    .btn-colab:hover {
+      background: #334155;
+      border-color: #475569;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .btn-colab img {
+      height: 22px;
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -366,9 +404,14 @@
               <span class="tag">gemini-3.8-flash</span>
             </div>
           </div>
-          <a href="junior_track/1_vulnerability_discovery_junior.html" class="btn-launch" target="_blank">
-            <span>View Executed Notebook Report</span> →
-          </a>
+          <div class="card-actions">
+            <a href="junior_track/1_vulnerability_discovery_junior.html" class="btn-launch" target="_blank">
+              <span>View HTML Report</span> →
+            </a>
+            <a href="https://colab.research.google.com/github/lgtkgtv/gemini-cyber-test-automation/blob/main/junior_track/1_vulnerability_discovery_junior.ipynb" class="btn-colab" target="_blank" rel="noopener" title="Run in Google Colab">
+              <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab">
+            </a>
+          </div>
         </div>
 
         <!-- Junior Notebook 2 -->
@@ -385,9 +428,14 @@
               <span class="tag">MITRE ATT&CK</span>
             </div>
           </div>
-          <a href="junior_track/2_stateful_defense_analyst_junior.html" class="btn-launch" target="_blank">
-            <span>View Executed Notebook Report</span> →
-          </a>
+          <div class="card-actions">
+            <a href="junior_track/2_stateful_defense_analyst_junior.html" class="btn-launch" target="_blank">
+              <span>View HTML Report</span> →
+            </a>
+            <a href="https://colab.research.google.com/github/lgtkgtv/gemini-cyber-test-automation/blob/main/junior_track/2_stateful_defense_analyst_junior.ipynb" class="btn-colab" target="_blank" rel="noopener" title="Run in Google Colab">
+              <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab">
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -416,9 +464,14 @@
               <span class="tag">Multi-Class Suite (CWE-22/78/918/502)</span>
             </div>
           </div>
-          <a href="engineering_track/1_vulnerability_discovery_engineer.html" class="btn-launch engineer" target="_blank">
-            <span>View Executed Notebook Report</span> →
-          </a>
+          <div class="card-actions">
+            <a href="engineering_track/1_vulnerability_discovery_engineer.html" class="btn-launch engineer" target="_blank">
+              <span>View HTML Report</span> →
+            </a>
+            <a href="https://colab.research.google.com/github/lgtkgtv/gemini-cyber-test-automation/blob/main/engineering_track/1_vulnerability_discovery_engineer.ipynb" class="btn-colab" target="_blank" rel="noopener" title="Run in Google Colab">
+              <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab">
+            </a>
+          </div>
         </div>
 
         <!-- Engineering Notebook 2 -->
@@ -435,9 +488,14 @@
               <span class="tag">Autonomous Tool Calling</span>
             </div>
           </div>
-          <a href="engineering_track/2_stateful_defense_analyst_engineer.html" class="btn-launch engineer" target="_blank">
-            <span>View Executed Notebook Report</span> →
-          </a>
+          <div class="card-actions">
+            <a href="engineering_track/2_stateful_defense_analyst_engineer.html" class="btn-launch engineer" target="_blank">
+              <span>View HTML Report</span> →
+            </a>
+            <a href="https://colab.research.google.com/github/lgtkgtv/gemini-cyber-test-automation/blob/main/engineering_track/2_stateful_defense_analyst_engineer.ipynb" class="btn-colab" target="_blank" rel="noopener" title="Run in Google Colab">
+              <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab">
+            </a>
+          </div>
         </div>
       </div>
     </section>

@@ -7829,7 +7829,8 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="%F0%9F%9B%A1%EF%B8%8F-Engineering-Track:-Stateful-Autonomous-SOC-Analyst-&amp;-Adversarial-Red-Teaming">🛡️ Engineering Track: Stateful Autonomous SOC Analyst &amp; Adversarial Red Teaming<a class="anchor-link" href="#%F0%9F%9B%A1%EF%B8%8F-Engineering-Track:-Stateful-Autonomous-SOC-Analyst-&amp;-Adversarial-Red-Teaming">¶</a></h1><h3 id="Systems-Architecture:-Multi-Turn-Threat-Correlation,-Adversarial-ML-(OWASP-LLM-Top-10),-and-Autonomous-SOAR-Tool-Calling">Systems Architecture: Multi-Turn Threat Correlation, Adversarial ML (OWASP LLM Top 10), and Autonomous SOAR Tool Calling<a class="anchor-link" href="#Systems-Architecture:-Multi-Turn-Threat-Correlation,-Adversarial-ML-(OWASP-LLM-Top-10),-and-Autonomous-SOAR-Tool-Calling">¶</a></h3><p>Welcome to Notebook 2 of the <strong>Engineering Track</strong>. In this lab, we build an autonomous <strong>Security Operations Center (SOC) Analyst</strong> capable of stateful multi-turn log correlation, evaluate its resilience against adversarial attacks under the <strong>OWASP Top 10 for LLMs</strong>, and implement an autonomous <strong>SOAR (Security Orchestration, Automation, and Response)</strong> agent with function calling.</p>
+<h1 id="%F0%9F%9B%A1%EF%B8%8F-Engineering-Track:-Stateful-Autonomous-SOC-Analyst-&amp;-Adversarial-Red-Teaming">🛡️ Engineering Track: Stateful Autonomous SOC Analyst &amp; Adversarial Red Teaming<a class="anchor-link" href="#%F0%9F%9B%A1%EF%B8%8F-Engineering-Track:-Stateful-Autonomous-SOC-Analyst-&amp;-Adversarial-Red-Teaming">¶</a></h1><p><a href="https://colab.research.google.com/github/lgtkgtv/gemini-cyber-test-automation/blob/main/engineering_track/2_stateful_defense_analyst_engineer.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg"/></a></p>
+<h3 id="Systems-Architecture:-Multi-Turn-Threat-Correlation,-Adversarial-ML-(OWASP-LLM-Top-10),-and-Autonomous-SOAR-Tool-Calling">Systems Architecture: Multi-Turn Threat Correlation, Adversarial ML (OWASP LLM Top 10), and Autonomous SOAR Tool Calling<a class="anchor-link" href="#Systems-Architecture:-Multi-Turn-Threat-Correlation,-Adversarial-ML-(OWASP-LLM-Top-10),-and-Autonomous-SOAR-Tool-Calling">¶</a></h3><p>Welcome to Notebook 2 of the <strong>Engineering Track</strong>. In this lab, we build an autonomous <strong>Security Operations Center (SOC) Analyst</strong> capable of stateful multi-turn log correlation, evaluate its resilience against adversarial attacks under the <strong>OWASP Top 10 for LLMs</strong>, and implement an autonomous <strong>SOAR (Security Orchestration, Automation, and Response)</strong> agent with function calling.</p>
 <hr/>
 <h2 id="Theoretical-Systems-Foundation:-The-LLM-Security-Architecture-Paradox">Theoretical Systems Foundation: The LLM Security Architecture Paradox<a class="anchor-link" href="#Theoretical-Systems-Foundation:-The-LLM-Security-Architecture-Paradox">¶</a></h2><p>Why is "Prompt Injection" fundamentally harder to solve than classic SQL injection or buffer overflows?</p>
 <div class="highlight"><pre><span></span>Traditional Operating System Security (Hardware Rings):
@@ -7883,7 +7884,18 @@ LLM Transformer Attention Architecture (Unified Vector Space):
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># --- Google Colab Compatibility &amp; Dependency Auto-Install ---</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="k">if</span> <span class="s1">'google.colab'</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"⚡ Google Colab environment detected. Installing required dependencies..."</span><span class="p">)</span>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">([</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span> <span class="s2">"-m"</span><span class="p">,</span> <span class="s2">"pip"</span><span class="p">,</span> <span class="s2">"install"</span><span class="p">,</span> <span class="s2">"-q"</span><span class="p">,</span>
+        <span class="s2">"google-genai&gt;=2.22.0"</span><span class="p">,</span> <span class="s2">"pydantic&gt;=2.0.0"</span><span class="p">,</span> <span class="s2">"tenacity&gt;=9.0.0"</span><span class="p">,</span> <span class="s2">"python-dotenv"</span><span class="p">,</span> <span class="s2">"ipywidgets&gt;=8.0.0"</span>
+    <span class="p">])</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
@@ -7897,6 +7909,18 @@ LLM Transformer Attention Architecture (Unified Vector Space):
 
 <span class="c1"># Load API credentials searching up to repository root</span>
 <span class="n">load_dotenv</span><span class="p">(</span><span class="n">find_dotenv</span><span class="p">())</span>
+<span class="c1"># Resolve Gemini API Key: .env -&gt; Colab Secrets -&gt; Interactive Prompt</span>
+<span class="k">if</span> <span class="s1">'google.colab'</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"GEMINI_API_KEY"</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">google.colab</span><span class="w"> </span><span class="kn">import</span> <span class="n">userdata</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"GEMINI_API_KEY"</span><span class="p">]</span> <span class="o">=</span> <span class="n">userdata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"GEMINI_API_KEY"</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"GEMINI_API_KEY"</span><span class="p">):</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">getpass</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"GEMINI_API_KEY"</span><span class="p">]</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getpass</span><span class="p">(</span><span class="s2">"🔑 Enter your GEMINI_API_KEY: "</span><span class="p">)</span>
+
 <span class="n">client</span> <span class="o">=</span> <span class="n">genai</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
 
 <span class="c1"># Dynamic Model Selector</span>
@@ -7962,9 +7986,9 @@ LLM Transformer Attention Architecture (Unified Vector Space):
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jupyter-widgets jp-OutputArea-output" id="133d6390-8b90-40db-bbe0-8e2acc92c6db" tabindex="0">
+<div class="jupyter-widgets jp-OutputArea-output" id="3178eda7-2946-4e6e-9e2a-af41e1d51e62" tabindex="0">
 <script type="text/javascript">
-var element = document.getElementById('133d6390-8b90-40db-bbe0-8e2acc92c6db');
+var element = document.getElementById('3178eda7-2946-4e6e-9e2a-af41e1d51e62');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "c70054e550fe4eae9e4d5de22419c63a", "version_major": 2, "version_minor": 0}
@@ -8537,9 +8561,9 @@ The adversary has successfully established a remote access foothold on an intern
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jupyter-widgets jp-OutputArea-output" id="b1d5312e-a9f4-4917-81fc-0e4b7cd06a4c" tabindex="0">
+<div class="jupyter-widgets jp-OutputArea-output" id="af78e551-8367-45e8-84cf-5ab99419b489" tabindex="0">
 <script type="text/javascript">
-var element = document.getElementById('b1d5312e-a9f4-4917-81fc-0e4b7cd06a4c');
+var element = document.getElementById('af78e551-8367-45e8-84cf-5ab99419b489');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "ac789bf4ead34b068ac1d475a625c3ea", "version_major": 2, "version_minor": 0}
@@ -8548,9 +8572,9 @@ var element = document.getElementById('b1d5312e-a9f4-4917-81fc-0e4b7cd06a4c');
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jupyter-widgets jp-OutputArea-output" id="b5dcd5f5-f95f-4ed7-9059-3e9019a6d8f9" tabindex="0">
+<div class="jupyter-widgets jp-OutputArea-output" id="5c75fbce-75c7-49d8-b075-c48c91285e6d" tabindex="0">
 <script type="text/javascript">
-var element = document.getElementById('b5dcd5f5-f95f-4ed7-9059-3e9019a6d8f9');
+var element = document.getElementById('5c75fbce-75c7-49d8-b075-c48c91285e6d');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "dbea1267b33443b2806ab2fa2c97a88b", "version_major": 2, "version_minor": 0}
@@ -8559,9 +8583,9 @@ var element = document.getElementById('b5dcd5f5-f95f-4ed7-9059-3e9019a6d8f9');
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jupyter-widgets jp-OutputArea-output" id="7b825ad7-fd89-4f7c-ab57-a4df138f304f" tabindex="0">
+<div class="jupyter-widgets jp-OutputArea-output" id="769f3b8e-f173-4ccb-866b-054c4efe3326" tabindex="0">
 <script type="text/javascript">
-var element = document.getElementById('7b825ad7-fd89-4f7c-ab57-a4df138f304f');
+var element = document.getElementById('769f3b8e-f173-4ccb-866b-054c4efe3326');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "1df91227c3ab4655a710c472706a7516", "version_major": 2, "version_minor": 0}
@@ -8570,9 +8594,9 @@ var element = document.getElementById('7b825ad7-fd89-4f7c-ab57-a4df138f304f');
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jupyter-widgets jp-OutputArea-output" id="93d7ca81-1c85-422b-8dd7-bfc3b74c2438" tabindex="0">
+<div class="jupyter-widgets jp-OutputArea-output" id="9c1b7aa1-f45a-4648-b4ea-9447cb44d1ac" tabindex="0">
 <script type="text/javascript">
-var element = document.getElementById('93d7ca81-1c85-422b-8dd7-bfc3b74c2438');
+var element = document.getElementById('9c1b7aa1-f45a-4648-b4ea-9447cb44d1ac');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "4178f6d495b24a76804e4ca0f35f37c2", "version_major": 2, "version_minor": 0}

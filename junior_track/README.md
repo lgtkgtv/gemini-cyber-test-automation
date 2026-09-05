@@ -9,8 +9,12 @@ The **Junior Track** is designed for middle and high school students, young code
 
 ## 🗺️ Mission Syllabus
 
-| Mission Notebook | Title & Theme | Hacker Detective Puzzle | Real-World Defense Skill |
+| Mission Notebook | Title & Theme | Google Colab | Real-World Defense Skill |
 | :--- | :--- | :--- | :--- |
+| [`1_vulnerability_discovery_junior.ipynb`](./1_vulnerability_discovery_junior.ipynb) | **Level 1: The Code Doctor**<br>*(Finding & Healing Broken Locks)* | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lgtkgtv/gemini-cyber-test-automation/blob/main/junior_track/1_vulnerability_discovery_junior.ipynb) | **SQL Injection Defense:**<br>Put user inputs into an *unbreakable glass envelope* (`?`) so computers never mistake words for commands! |
+| [`2_stateful_defense_analyst_junior.ipynb`](./2_stateful_defense_analyst_junior.ipynb) | **Level 2: The AI Security Guard**<br>*(Catching Burglars & Base Lockdown)* | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lgtkgtv/gemini-cyber-test-automation/blob/main/junior_track/2_stateful_defense_analyst_junior.ipynb) | **Stateful AI Security:**<br>Teach an AI agent to remember past clues, stop sneaky burglars, and trigger emergency lockdown! |
+
+--- | :--- | :--- | :--- |
 | [`1_vulnerability_discovery_junior.ipynb`](./1_vulnerability_discovery_junior.ipynb) | **Level 1: The Code Doctor**<br>*(Finding & Healing Broken Locks)* | **The Secret Coin Riddle:**<br>Can you trick the database into unlocking every secret account with math? | **SQL Injection Defense:**<br>Put user inputs into an *unbreakable glass envelope* (`?`) so computers never mistake words for commands! |
 | [`2_stateful_defense_analyst_junior.ipynb`](./2_stateful_defense_analyst_junior.ipynb) | **Level 2: The AI Security Guard**<br>*(Catching Burglars & Base Lockdown)* | **The AI Trickster Challenge:**<br>Can you disguise yourself as a teacher or robot boss to fool the AI guard? | **Stateful AI Security:**<br>Teach an AI agent to remember past clues, stop sneaky burglars, and trigger emergency lockdown! |
 

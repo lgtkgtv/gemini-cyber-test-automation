@@ -7829,7 +7829,8 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="%F0%9F%8E%AE-AI-Cyber-Academy:-Stateful-Cyber-Defense-Analyst">🎮 AI Cyber Academy: Stateful Cyber Defense Analyst<a class="anchor-link" href="#%F0%9F%8E%AE-AI-Cyber-Academy:-Stateful-Cyber-Defense-Analyst">¶</a></h1><h3 id="Level-2:-The-AI-Security-Guard-(Catching-Burglars-&amp;-Locking-Down-the-Base)">Level 2: The AI Security Guard (Catching Burglars &amp; Locking Down the Base)<a class="anchor-link" href="#Level-2:-The-AI-Security-Guard-(Catching-Burglars-&amp;-Locking-Down-the-Base)">¶</a></h3><p>Welcome to Level 2! In this lab, we build an intelligent <strong>AI Security Guard (SOC Analyst)</strong>.</p>
+<h1 id="%F0%9F%8E%AE-AI-Cyber-Academy:-Stateful-Cyber-Defense-Analyst">🎮 AI Cyber Academy: Stateful Cyber Defense Analyst<a class="anchor-link" href="#%F0%9F%8E%AE-AI-Cyber-Academy:-Stateful-Cyber-Defense-Analyst">¶</a></h1><p><a href="https://colab.research.google.com/github/lgtkgtv/gemini-cyber-test-automation/blob/main/junior_track/2_stateful_defense_analyst_junior.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg"/></a></p>
+<h3 id="Level-2:-The-AI-Security-Guard-(Catching-Burglars-&amp;-Locking-Down-the-Base)">Level 2: The AI Security Guard (Catching Burglars &amp; Locking Down the Base)<a class="anchor-link" href="#Level-2:-The-AI-Security-Guard-(Catching-Burglars-&amp;-Locking-Down-the-Base)">¶</a></h3><p>Welcome to Level 2! In this lab, we build an intelligent <strong>AI Security Guard (SOC Analyst)</strong>.</p>
 <blockquote>
 <p>🧭 <strong>Dual-Layer Learning Guide:</strong></p>
 <ul>
@@ -7863,7 +7864,18 @@ uv<span class="w"> </span>run<span class="w"> </span>jupyter<span class="w"> </s
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1">### Cell 1: Initialization, Resilience &amp; Dynamic Model Selector</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># --- Google Colab Compatibility &amp; Dependency Auto-Install ---</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="k">if</span> <span class="s1">'google.colab'</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"⚡ Google Colab environment detected. Installing required dependencies..."</span><span class="p">)</span>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">([</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span> <span class="s2">"-m"</span><span class="p">,</span> <span class="s2">"pip"</span><span class="p">,</span> <span class="s2">"install"</span><span class="p">,</span> <span class="s2">"-q"</span><span class="p">,</span>
+        <span class="s2">"google-genai&gt;=2.22.0"</span><span class="p">,</span> <span class="s2">"pydantic&gt;=2.0.0"</span><span class="p">,</span> <span class="s2">"tenacity&gt;=9.0.0"</span><span class="p">,</span> <span class="s2">"python-dotenv"</span><span class="p">,</span> <span class="s2">"ipywidgets&gt;=8.0.0"</span>
+    <span class="p">])</span>
+
+<span class="c1">### Cell 1: Initialization, Resilience &amp; Dynamic Model Selector</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
@@ -7877,6 +7889,18 @@ uv<span class="w"> </span>run<span class="w"> </span>jupyter<span class="w"> </s
 
 <span class="c1"># Load API credentials from the local .env file</span>
 <span class="n">load_dotenv</span><span class="p">(</span><span class="n">find_dotenv</span><span class="p">())</span>
+<span class="c1"># Resolve Gemini API Key: .env -&gt; Colab Secrets -&gt; Interactive Prompt</span>
+<span class="k">if</span> <span class="s1">'google.colab'</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"GEMINI_API_KEY"</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">google.colab</span><span class="w"> </span><span class="kn">import</span> <span class="n">userdata</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"GEMINI_API_KEY"</span><span class="p">]</span> <span class="o">=</span> <span class="n">userdata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"GEMINI_API_KEY"</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"GEMINI_API_KEY"</span><span class="p">):</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">getpass</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"GEMINI_API_KEY"</span><span class="p">]</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getpass</span><span class="p">(</span><span class="s2">"🔑 Enter your GEMINI_API_KEY: "</span><span class="p">)</span>
+
 <span class="n">client</span> <span class="o">=</span> <span class="n">genai</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
 
 <span class="c1"># Dynamic Model Selector (Default: gemini-3.8-flash)</span>
@@ -7944,9 +7968,9 @@ uv<span class="w"> </span>run<span class="w"> </span>jupyter<span class="w"> </s
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jupyter-widgets jp-OutputArea-output" id="e3037438-a571-4775-a5e7-ebd63b440ec6" tabindex="0">
+<div class="jupyter-widgets jp-OutputArea-output" id="162964c7-4689-4b8a-ad31-cd4083fbdb21" tabindex="0">
 <script type="text/javascript">
-var element = document.getElementById('e3037438-a571-4775-a5e7-ebd63b440ec6');
+var element = document.getElementById('162964c7-4689-4b8a-ad31-cd4083fbdb21');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "4756b696595d44c981ff6e11bf5bcba3", "version_major": 2, "version_minor": 0}
@@ -8627,9 +8651,9 @@ Jan 14 03:45:33 webserver nginx: 192.168.1.105 - - [14/Jan/2026:03:45:33 +0000] 
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jupyter-widgets jp-OutputArea-output" id="554e2a59-6199-451e-815c-94f78442f7ec" tabindex="0">
+<div class="jupyter-widgets jp-OutputArea-output" id="7e0fe199-4228-44bf-9508-91f6c540c5b4" tabindex="0">
 <script type="text/javascript">
-var element = document.getElementById('554e2a59-6199-451e-815c-94f78442f7ec');
+var element = document.getElementById('7e0fe199-4228-44bf-9508-91f6c540c5b4');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "2fb1fba536464a0d9eb5e6c0d6afb529", "version_major": 2, "version_minor": 0}
@@ -8638,9 +8662,9 @@ var element = document.getElementById('554e2a59-6199-451e-815c-94f78442f7ec');
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jupyter-widgets jp-OutputArea-output" id="f9db703e-623e-4438-a6ea-2a2454d1c55e" tabindex="0">
+<div class="jupyter-widgets jp-OutputArea-output" id="fa1820d9-e225-4f55-823a-44a1e8391620" tabindex="0">
 <script type="text/javascript">
-var element = document.getElementById('f9db703e-623e-4438-a6ea-2a2454d1c55e');
+var element = document.getElementById('fa1820d9-e225-4f55-823a-44a1e8391620');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "d82897016107499e992cdd42a2ac46d9", "version_major": 2, "version_minor": 0}
@@ -8649,9 +8673,9 @@ var element = document.getElementById('f9db703e-623e-4438-a6ea-2a2454d1c55e');
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jupyter-widgets jp-OutputArea-output" id="657a896a-9843-4359-affd-9c75317ca2cd" tabindex="0">
+<div class="jupyter-widgets jp-OutputArea-output" id="9183863f-ce6c-4313-9434-39132c7c526b" tabindex="0">
 <script type="text/javascript">
-var element = document.getElementById('657a896a-9843-4359-affd-9c75317ca2cd');
+var element = document.getElementById('9183863f-ce6c-4313-9434-39132c7c526b');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "a474eb4a78a7482c8e08fe2f9f8f08cf", "version_major": 2, "version_minor": 0}
@@ -8660,9 +8684,9 @@ var element = document.getElementById('657a896a-9843-4359-affd-9c75317ca2cd');
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jupyter-widgets jp-OutputArea-output" id="61761251-2a21-4898-a878-39576c436f2c" tabindex="0">
+<div class="jupyter-widgets jp-OutputArea-output" id="970e5410-100d-4897-9f26-1a8962d30b5b" tabindex="0">
 <script type="text/javascript">
-var element = document.getElementById('61761251-2a21-4898-a878-39576c436f2c');
+var element = document.getElementById('970e5410-100d-4897-9f26-1a8962d30b5b');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "df08c05d9803426fa2dfae42c7e3266d", "version_major": 2, "version_minor": 0}
@@ -8800,9 +8824,9 @@ var element = document.getElementById('61761251-2a21-4898-a878-39576c436f2c');
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jupyter-widgets jp-OutputArea-output" id="5889fb41-c170-4331-aa3f-8ca4ea1e71ae" tabindex="0">
+<div class="jupyter-widgets jp-OutputArea-output" id="a16197d7-b9c5-4ddd-b1c2-5d4d6e598564" tabindex="0">
 <script type="text/javascript">
-var element = document.getElementById('5889fb41-c170-4331-aa3f-8ca4ea1e71ae');
+var element = document.getElementById('a16197d7-b9c5-4ddd-b1c2-5d4d6e598564');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "13f34942bfea46339f169913b27786d6", "version_major": 2, "version_minor": 0}
@@ -8811,9 +8835,9 @@ var element = document.getElementById('5889fb41-c170-4331-aa3f-8ca4ea1e71ae');
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jupyter-widgets jp-OutputArea-output" id="7818e42c-201f-43b8-8f65-2cf4189d8b33" tabindex="0">
+<div class="jupyter-widgets jp-OutputArea-output" id="737780c5-4203-436b-ac93-db2b183afe19" tabindex="0">
 <script type="text/javascript">
-var element = document.getElementById('7818e42c-201f-43b8-8f65-2cf4189d8b33');
+var element = document.getElementById('737780c5-4203-436b-ac93-db2b183afe19');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "ee407b80faf34d5997580b9d04ca8c7e", "version_major": 2, "version_minor": 0}
@@ -8822,9 +8846,9 @@ var element = document.getElementById('7818e42c-201f-43b8-8f65-2cf4189d8b33');
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jupyter-widgets jp-OutputArea-output" id="5f72c5f2-db4c-4d03-bc71-1dfbfa1822fe" tabindex="0">
+<div class="jupyter-widgets jp-OutputArea-output" id="e133650c-3e56-49de-baf0-273c70336f81" tabindex="0">
 <script type="text/javascript">
-var element = document.getElementById('5f72c5f2-db4c-4d03-bc71-1dfbfa1822fe');
+var element = document.getElementById('e133650c-3e56-49de-baf0-273c70336f81');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "5cace59215b24924bc3a1fb57ee1b358", "version_major": 2, "version_minor": 0}

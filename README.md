@@ -53,12 +53,12 @@ cyber-test-automation/
 
 ### 🧒 Track 1: Junior Academy (Ages 12+)
 * **Folder:** [`junior_track/`](./junior_track/)
-* **Mission 1:** [`1_vulnerability_discovery_junior.ipynb`](./junior_track/1_vulnerability_discovery_junior.ipynb) — **Level 1: The Code Doctor (Finding & Healing Broken Locks)**
+* **Mission 1:** [`1_vulnerability_discovery_junior.ipynb`](./junior_track/1_vulnerability_discovery_junior.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lgtkgtv/gemini-cyber-test-automation/blob/main/junior_track/1_vulnerability_discovery_junior.ipynb) — **Level 1: The Code Doctor (Finding & Healing Broken Locks)**
   * *Story:* Discovering the broken lock on the high-score vault.
   * *Puzzle:* Interactive multiple-choice challenge proving how `' OR '1'='1` tricks databases.
   * *Heal:* Placing user words in an *unbreakable glass envelope* (`?`).
   * *Blast Chamber:* Verifying the fix blocked the attack and kept normal logins working.
-* **Mission 2:** [`2_stateful_defense_analyst_junior.ipynb`](./junior_track/2_stateful_defense_analyst_junior.ipynb) — **Level 2: The AI Security Guard (Catching Burglars & Base Lockdown)**
+* **Mission 2:** [`2_stateful_defense_analyst_junior.ipynb`](./junior_track/2_stateful_defense_analyst_junior.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lgtkgtv/gemini-cyber-test-automation/blob/main/junior_track/2_stateful_defense_analyst_junior.ipynb) — **Level 2: The AI Security Guard (Catching Burglars & Base Lockdown)**
   * *Story:* Catching the three-step burglar across time.
   * *Puzzle:* The AI Trickster challenge—can you trick the AI guard with fake orders?
   * *Lockdown:* Autonomous SOAR response isolating bad actors automatically.
@@ -67,13 +67,13 @@ cyber-test-automation/
 
 ### 🛡️ Track 2: Engineering Track (Ages 18+ / CS & Security)
 * **Folder:** [`engineering_track/`](./engineering_track/)
-* **Lab 1:** [`1_vulnerability_discovery_engineer.ipynb`](./engineering_track/1_vulnerability_discovery_engineer.ipynb) — **Autonomous Vulnerability Discovery & Verification Engine**
+* **Lab 1:** [`1_vulnerability_discovery_engineer.ipynb`](./engineering_track/1_vulnerability_discovery_engineer.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lgtkgtv/gemini-cyber-test-automation/blob/main/engineering_track/1_vulnerability_discovery_engineer.ipynb) — **Autonomous Vulnerability Discovery & Verification Engine**
   * *Systems Mechanics:* SQL query compilation pipeline (Tokenizer → Lemon LALR(1) Parser → AST → VDBE Bytecode).
   * *CTF Triage Console:* Evaluating Tautologies, Comment Truncation (`--`), UNION injections, and Blind Probes.
   * *Type-Safe Contracts:* Pydantic v2 schemas with CVSS v3.1 vector strings and CWE taxonomy mappings.
   * *Static & Dynamic Gates:* Pre-execution AST validation (`ast.parse()`), unified diffs, and closed-loop sandbox verification in SQLite.
   * *DevSecOps Suite:* Automated batch audit covering CWE-22, CWE-78, CWE-918, and CWE-502.
-* **Lab 2:** [`2_stateful_defense_analyst_engineer.ipynb`](./engineering_track/2_stateful_defense_analyst_engineer.ipynb) — **Stateful SOC Analyst & Adversarial Red Teaming**
+* **Lab 2:** [`2_stateful_defense_analyst_engineer.ipynb`](./engineering_track/2_stateful_defense_analyst_engineer.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lgtkgtv/gemini-cyber-test-automation/blob/main/engineering_track/2_stateful_defense_analyst_engineer.ipynb) — **Stateful SOC Analyst & Adversarial Red Teaming**
   * *Systems Theory:* The LLM Security Paradox—Hardware Privilege Rings (x86 Ring 0 vs. Ring 3 / MMU) vs. Transformer Softmax Attention in a unified embedding space ($E \in \mathbb{R}^{\text{vocab} \times d_{\text{model}}}$).
   * *Kill Chain Correlation:* Correlating Nmap sweeps, web exploit probes, and SSH brute-force spikes.
   * *Adversarial Red Teaming:* Live testing against OWASP Top 10 for LLMs (Direct Jailbreaks, Indirect Log Poisoning, Stored XSS, Excessive Agency).
@@ -112,6 +112,28 @@ Gemini reasoning models replace pattern-matching static analysis with contextual
 | **Inference Latency** | Optimized for fast agentic tool-calling loops | High latency on frontier models |
 
 ---
+
+
+---
+
+## ⚡ Running in Google Colab (One-Click Cloud Execution)
+
+All four notebooks are pre-configured to run directly in [Google Colab](https://colab.research.google.com/) with zero local setup:
+
+| Track | Notebook | One-Click Colab Launch |
+| :--- | :--- | :--- |
+| **Junior Academy** | **Level 1: The Code Doctor** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lgtkgtv/gemini-cyber-test-automation/blob/main/junior_track/1_vulnerability_discovery_junior.ipynb) |
+| **Junior Academy** | **Level 2: The AI Security Guard** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lgtkgtv/gemini-cyber-test-automation/blob/main/junior_track/2_stateful_defense_analyst_junior.ipynb) |
+| **Engineering Track** | **Lab 1: Vulnerability Engine** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lgtkgtv/gemini-cyber-test-automation/blob/main/engineering_track/1_vulnerability_discovery_engineer.ipynb) |
+| **Engineering Track** | **Lab 2: Stateful SOC & Red Team** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lgtkgtv/gemini-cyber-test-automation/blob/main/engineering_track/2_stateful_defense_analyst_engineer.ipynb) |
+
+### 🔑 Google Colab Setup Steps:
+1. Click any **Open in Colab** badge above.
+2. When the notebook opens, run the first code cell:
+   - It will automatically detect Google Colab and install all dependencies (`google-genai`, `pydantic`, `tenacity`, `ipywidgets`, `python-dotenv`).
+3. **API Key Setup in Colab:**
+   - **Option A (Colab Secrets - Recommended):** Click the 🔑 **Secrets** icon in Colab's left sidebar, add a new secret with name `GEMINI_API_KEY` and value of your key, and enable "Notebook access".
+   - **Option B (Interactive Prompt):** If not stored in Secrets, the notebook will display a secure password prompt where you can paste your key.
 
 ## 🚀 Quick Start Guide
 
