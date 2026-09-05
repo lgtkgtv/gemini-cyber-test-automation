@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Cyber Academy: Dual-Track Cybersecurity Automation with Google Gemini</title>
+  <meta name="description" content="Dual-track cybersecurity automation curriculum featuring autonomous vulnerability discovery, stateful SOC defense, and SOAR tool calling using Google Gemini.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0b0f19;
+      --card-bg: #111827;
+      --card-border: #1f2937;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --cyan: #06b6d4;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --rose: #f43f5e;
+      --indigo: #6366f1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      padding: 4rem 1rem 3rem;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 3.5rem;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: #60a5fa;
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    h1 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #ffffff 30%, #93c5fd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 780px;
+      margin: 0 auto 1.75rem;
+    }
+
+    .header-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-github {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: #1f2937;
+      color: #fff;
+      padding: 0.6rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: 1px solid #374151;
+    }
+
+    .btn-github:hover {
+      background-color: #374151;
+      transform: translateY(-1px);
+    }
+
+    .track-section {
+      margin-bottom: 4rem;
+    }
+
+    .track-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .track-header h2 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .track-tag {
+      padding: 0.25rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .tag-junior {
+      background-color: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .tag-engineer {
+      background-color: rgba(99, 102, 241, 0.15);
+      color: #818cf8;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+
+    .track-desc {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 1.75rem;
+      max-width: 900px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+      gap: 1.75rem;
+    }
+
+    @media (max-width: 640px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: #3b82f6;
+      box-shadow: 0 12px 30px -10px rgba(59, 130, 246, 0.2);
+    }
+
+    .card-top {
+      margin-bottom: 1.5rem;
+    }
+
+    .card-level {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 0.75rem;
+      color: #ffffff;
+    }
+
+    .card-body {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+
+    .tag-cluster {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag {
+      background: #1f2937;
+      color: #d1d5db;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      font-family: 'JetBrains Mono', monospace;
+      border: 1px solid #374151;
+    }
+
+    .btn-launch {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #ffffff;
+      padding: 0.85rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-launch:hover {
+      background: linear-gradient(135deg, #1d4ed8, #1e40af);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-launch.engineer {
+      background: linear-gradient(135deg, #4f46e5, #4338ca);
+      box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
+    }
+
+    .btn-launch.engineer:hover {
+      background: linear-gradient(135deg, #4338ca, #3730a3);
+      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+    }
+
+    .matrix-section {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 2rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .matrix-section h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .table-responsive {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    th {
+      background: #1f2937;
+      color: #e5e7eb;
+      padding: 0.75rem 1rem;
+      font-weight: 600;
+      border-bottom: 2px solid #374151;
+    }
+
+    td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--card-border);
+      color: #d1d5db;
+    }
+
+    tr:hover td {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--card-border);
+    }
+
+    footer a {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge-pill">
+        🛡️ Google Gemini Cybersecurity Curriculum
+      </div>
+      <h1>AI Cyber Academy</h1>
+      <p>A dual-track interactive curriculum exploring autonomous vulnerability discovery, compiler AST mechanics, stateful cyber defense, and autonomous SOAR tool calling with Google Gemini models.</p>
+      <div class="header-links">
+        <a href="https://github.com/lgtkgtv/gemini-cyber-test-automation" class="btn-github" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          View Source Repository on GitHub
+        </a>
+      </div>
+    </header>
+
+    <!-- TRACK 1: JUNIOR ACADEMY -->
+    <section class="track-section">
+      <div class="track-header">
+        <h2>🧒 Junior Academy</h2>
+        <span class="track-tag tag-junior">Ages 12+ / Gamified Intuition</span>
+      </div>
+      <p class="track-desc">Designed for middle and high school students, young coders, and beginners. Learn how locks break using real-world analogies (The Broken Lock, Bob the Hacker, The Robot Butler) and interactive puzzles.</p>
+
+      <div class="card-grid">
+        <!-- Junior Notebook 1 -->
+        <div class="card">
+          <div class="card-top">
+            <div class="card-level">Level 1 • Vulnerability Discovery</div>
+            <h3 class="card-title">The Code Doctor: Finding & Healing Broken Locks</h3>
+            <p class="card-body">Discover how Bob the Hacker tricks computer doors using the <em>Magic Password Trick</em> (<code>' OR '1'='1</code>). Learn the Golden Rule of Computers and heal the lock using an unbreakable glass envelope (<code>?</code>).</p>
+            <div class="tag-cluster">
+              <span class="tag">SQL Injection</span>
+              <span class="tag">CWE-89</span>
+              <span class="tag">Password Riddle Lab</span>
+              <span class="tag">Blast Chamber Test</span>
+              <span class="tag">gemini-3.8-flash</span>
+            </div>
+          </div>
+          <a href="junior_track/1_vulnerability_discovery_junior.html" class="btn-launch" target="_blank">
+            <span>View Executed Notebook Report</span> →
+          </a>
+        </div>
+
+        <!-- Junior Notebook 2 -->
+        <div class="card">
+          <div class="card-top">
+            <div class="card-level">Level 2 • Stateful SOC Defense</div>
+            <h3 class="card-title">The AI Security Guard: Catching Burglars & Base Lockdown</h3>
+            <p class="card-body">Train an intelligent AI security guard to correlate clues across time, catch a 3-step intruder sneaking through the base, beat the prompt trickster challenge, and dispatch emergency automated locks.</p>
+            <div class="tag-cluster">
+              <span class="tag">Stateful Chat Memory</span>
+              <span class="tag">The Robot Butler</span>
+              <span class="tag">Prompt Tricks Lab</span>
+              <span class="tag">Autonomous SOAR</span>
+              <span class="tag">MITRE ATT&CK</span>
+            </div>
+          </div>
+          <a href="junior_track/2_stateful_defense_analyst_junior.html" class="btn-launch" target="_blank">
+            <span>View Executed Notebook Report</span> →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRACK 2: ENGINEERING TRACK -->
+    <section class="track-section">
+      <div class="track-header">
+        <h2>🛡️ Engineering Track</h2>
+        <span class="track-tag tag-engineer">Ages 18+ / CS & Security Undergrads</span>
+      </div>
+      <p class="track-desc">Rigorous systems engineering for Computer Science undergraduates, AppSec engineers, and CTF competitors. Deep dives into compiler lexer/parser AST boundaries, Pydantic contracts, and closed-loop verification.</p>
+
+      <div class="card-grid">
+        <!-- Engineering Notebook 1 -->
+        <div class="card">
+          <div class="card-top">
+            <div class="card-level">Lab 1 • Systems Security Engine</div>
+            <h3 class="card-title">Autonomous Vulnerability Discovery & Verification Engine</h3>
+            <p class="card-body">Explore SQLite compiler mechanics (Tokenizer → Lemon LALR(1) Parser → AST → VDBE Bytecode). Enforce strict Pydantic v2 schemas with CVSS v3.1 vectors, validate AST syntax, and verify patches in a closed-loop sandbox.</p>
+            <div class="tag-cluster">
+              <span class="tag">Compiler AST Mechanics</span>
+              <span class="tag">Lemon Parser</span>
+              <span class="tag">Pydantic v2 Contracts</span>
+              <span class="tag">CVSS v3.1: 9.8</span>
+              <span class="tag">Unified Diff</span>
+              <span class="tag">Multi-Class Suite (CWE-22/78/918/502)</span>
+            </div>
+          </div>
+          <a href="engineering_track/1_vulnerability_discovery_engineer.html" class="btn-launch engineer" target="_blank">
+            <span>View Executed Notebook Report</span> →
+          </a>
+        </div>
+
+        <!-- Engineering Notebook 2 -->
+        <div class="card">
+          <div class="card-top">
+            <div class="card-level">Lab 2 • Adversarial ML & SOAR</div>
+            <h3 class="card-title">Stateful Autonomous SOC Analyst & Adversarial Red Teaming</h3>
+            <p class="card-body">Investigate the LLM Security Paradox: CPU Privilege Rings (Ring 0 vs. Ring 3) vs. Transformer Softmax Attention without rings. Correlate multi-stage APT kill-chains, normalize into Elastic Common Schema (ECS), and execute SOAR tool calling.</p>
+            <div class="tag-cluster">
+              <span class="tag">The LLM Paradox</span>
+              <span class="tag">OWASP LLM01/LLM02/LLM06</span>
+              <span class="tag">Multi-Turn SIEM</span>
+              <span class="tag">Elastic Common Schema (ECS)</span>
+              <span class="tag">Autonomous Tool Calling</span>
+            </div>
+          </div>
+          <a href="engineering_track/2_stateful_defense_analyst_engineer.html" class="btn-launch engineer" target="_blank">
+            <span>View Executed Notebook Report</span> →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CURRICULUM TAXONOMY MATRIX -->
+    <section class="matrix-section">
+      <h3>🏷️ Curriculum Standards & Taxonomy Coverage</h3>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Framework</th>
+              <th>Identifier</th>
+              <th>Category & Description</th>
+              <th>Junior Academy</th>
+              <th>Engineering Track</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>MITRE CWE</strong></td>
+              <td><code>CWE-89</code></td>
+              <td>Improper Neutralization of Special Elements in SQL Command (SQLi)</td>
+              <td>Level 1 (The Broken Lock)</td>
+              <td>Lab 1 (Parser Boundary AST)</td>
+            </tr>
+            <tr>
+              <td><strong>MITRE CWE</strong></td>
+              <td><code>CWE-22</code></td>
+              <td>Path Traversal / Arbitrary File Read</td>
+              <td>Level 1 (Batch Suite)</td>
+              <td>Lab 1 (Enterprise Suite)</td>
+            </tr>
+            <tr>
+              <td><strong>MITRE CWE</strong></td>
+              <td><code>CWE-78</code></td>
+              <td>OS Command Injection (Shell Metacharacters)</td>
+              <td>Level 1 (Batch Suite)</td>
+              <td>Lab 1 (Enterprise Suite)</td>
+            </tr>
+            <tr>
+              <td><strong>MITRE CWE</strong></td>
+              <td><code>CWE-918</code></td>
+              <td>Server-Side Request Forgery (Cloud Metadata SSRF)</td>
+              <td>Level 1 (Batch Suite)</td>
+              <td>Lab 1 (Enterprise Suite)</td>
+            </tr>
+            <tr>
+              <td><strong>MITRE CWE</strong></td>
+              <td><code>CWE-502</code></td>
+              <td>Insecure Deserialization (Python Pickle Gadgets)</td>
+              <td>Level 1 (Batch Suite)</td>
+              <td>Lab 1 (Enterprise Suite)</td>
+            </tr>
+            <tr>
+              <td><strong>OWASP LLM</strong></td>
+              <td><code>LLM01</code></td>
+              <td>Direct & Indirect Prompt Injection / Jailbreaks</td>
+              <td>Level 2 (The Robot Butler)</td>
+              <td>Lab 2 (Red Team Workbench)</td>
+            </tr>
+            <tr>
+              <td><strong>OWASP LLM</strong></td>
+              <td><code>LLM02</code></td>
+              <td>Insecure Output Handling (Stored / Reflected XSS)</td>
+              <td>Level 2 (Payload Simulation)</td>
+              <td>Lab 2 (Red Team Workbench)</td>
+            </tr>
+            <tr>
+              <td><strong>OWASP LLM</strong></td>
+              <td><code>LLM06</code></td>
+              <td>Excessive Agency & Autonomous Action Abuse</td>
+              <td>Level 2 (SOAR Containment)</td>
+              <td>Lab 2 (SOAR Tool Calling)</td>
+            </tr>
+            <tr>
+              <td><strong>MITRE ATT&CK</strong></td>
+              <td><code>T1595 / T1190 / T1110</code></td>
+              <td>Active Scanning, Web Exploitation, SSH Brute Force</td>
+              <td>Level 2 (3-Step Burglar)</td>
+              <td>Lab 2 (Kill-Chain Correlation)</td>
+            </tr>
+            <tr>
+              <td><strong>Enterprise SIEM</strong></td>
+              <td><code>ECS v8.x / RFC 5424</code></td>
+              <td>Elastic Common Schema & Structured Syslog Normalization</td>
+              <td>Level 2 (Human Translation)</td>
+              <td>Lab 2 (ECS Normalizer)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      <p>Built with ❤️ for cybersecurity education using <strong>Google Gemini</strong> reasoning models and the <strong>Google GenAI SDK</strong> (<code>google-genai</code>).</p>
+      <p style="margin-top: 0.5rem;">Source code and curriculum materials available on <a href="https://github.com/lgtkgtv/gemini-cyber-test-automation" target="_blank" rel="noopener">GitHub</a>.</p>
+    </footer>
+  </div>
+</body>
+</html>

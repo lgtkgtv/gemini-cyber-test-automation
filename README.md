@@ -2,6 +2,10 @@
 
 A comprehensive, two-tier cybersecurity engineering and defense automation curriculum leveraging the modern Google GenAI SDK (`google-genai`) and Gemini reasoning models (`gemini-3.8-flash`, `gemini-2.5-flash`, and `gemini-2.5-pro`).
 
+> 🌐 **Live Interactive Portal (GitHub Pages):**  
+> Explore the executed interactive notebooks, rich security reports, side-by-side diffs, and verification certificates directly in your browser:  
+> **👉 [https://lgtkgtv.github.io/gemini-cyber-test-automation/](https://lgtkgtv.github.io/gemini-cyber-test-automation/)**
+
 ---
 
 ## 🗺️ Dual-Track Curriculum Architecture
@@ -144,3 +148,16 @@ Every notebook includes an interactive **Dynamic Model Selector** dropdown:
 - **`gemini-3.8-flash` (Default):** Frontier cyber reasoning and tool calling.
 - **`gemini-2.5-flash` (Fallback):** High-throughput, generous free-tier quotas. If you encounter a `429 RESOURCE_EXHAUSTED` error on free-tier limits, switch the dropdown to `gemini-2.5-flash`.
 - **`gemini-2.5-pro`:** Deep multi-step reasoning for complex exploitation and architectural analysis.
+
+---
+
+## 🌐 GitHub Pages Hosting & Automated Deployment
+
+This repository is pre-configured for automated GitHub Pages hosting:
+- **Live Landing Portal:** Serves [`docs/index.html`](./docs/index.html) with responsive interactive navigation to all 4 executed HTML notebook reports.
+- **Automated Workflow:** [`.github/workflows/pages.yml`](./.github/workflows/pages.yml) builds and deploys `./docs` on every push to `main`.
+- **To Enable on GitHub:**
+  1. Go to your repository **Settings** → **Pages**.
+  2. Under **Build and deployment** → **Source**, select **GitHub Actions** (recommended) or select **Deploy from a branch** (Branch: `main`, Folder: `/docs`).
+  3. Your live portal will be available at: **`https://lgtkgtv.github.io/gemini-cyber-test-automation/`**.
+
