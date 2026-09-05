@@ -14,3 +14,8 @@ wheels/
 
 # notebook
 .ipynb_checkpoints/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3

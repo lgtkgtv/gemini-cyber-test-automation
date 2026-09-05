@@ -470,15 +470,21 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "google-genai" },
+    { name = "ipywidgets" },
     { name = "jupyter" },
+    { name = "pydantic" },
     { name = "python-dotenv" },
+    { name = "tenacity" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "google-genai", specifier = ">=2.22.0" },
+    { name = "ipywidgets", specifier = ">=8.0.0" },
     { name = "jupyter", specifier = ">=1.1.1" },
+    { name = "pydantic", specifier = ">=2.13.5" },
     { name = "python-dotenv", specifier = ">=1.2.3" },
+    { name = "tenacity", specifier = ">=9.1.4" },
 ]
 
 [[package]]
