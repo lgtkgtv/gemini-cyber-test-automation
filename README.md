@@ -14,16 +14,25 @@ To serve diverse learning goals, the repository is partitioned into two dedicate
 
 ```text
 cyber-test-automation/
+├── .github/workflows/                     <-- Automated GitHub Pages deployment
+│   └── pages.yml
+├── docs/                                  <-- Hosted GitHub Pages web portal & HTML reports
+│   ├── index.html
+│   ├── .nojekyll
+│   ├── junior_track/
+│   │   ├── 1_vulnerability_discovery_junior.html
+│   │   └── 2_stateful_defense_analyst_junior.html
+│   └── engineering_track/
+│       ├── 1_vulnerability_discovery_engineer.html
+│       └── 2_stateful_defense_analyst_engineer.html
 ├── junior_track/                          <-- Track 1: Ages 12+ / Beginners / Visual Learners
 │   ├── README.md                          <-- Junior track guide & mission syllabus
 │   ├── 1_vulnerability_discovery_junior.ipynb
 │   └── 2_stateful_defense_analyst_junior.ipynb
-│
 ├── engineering_track/                     <-- Track 2: Ages 18+ / CS Undergrads / DevSecOps & CTF
 │   ├── README.md                          <-- Systems & compiler engineering syllabus
 │   ├── 1_vulnerability_discovery_engineer.ipynb
 │   └── 2_stateful_defense_analyst_engineer.ipynb
-│
 ├── .env.example                           <-- API key configuration template
 ├── pyproject.toml                         <-- Project dependencies managed with uv
 └── README.md                              <-- Master repository landing page
